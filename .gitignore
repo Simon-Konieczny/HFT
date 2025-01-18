@@ -31,4 +31,4 @@
 *.out
 *.app
 
-./core-engine/cmake-build-debug-mingw
+core-engine/cmake-build-debug-mingw
