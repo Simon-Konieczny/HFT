@@ -8,10 +8,14 @@ set(CMAKE_TOOLCHAIN_FILE "C:/Users/konie/vcpkg/scripts/buildsystems/vcpkg.cmake"
 add_executable(core_engine
         src/order_book.cpp
         src/matching_engine.cpp
+        src/price_updater.cpp
+        src/trading_system.cpp
         include/order.hpp
         include/order_book.hpp
         include/matching_engine.hpp
         include/utils.hpp
+        include/price_updater.hpp
+        include/trading_system.hpp
         main.cpp
 )
 
