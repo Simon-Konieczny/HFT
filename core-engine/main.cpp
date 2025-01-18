@@ -36,9 +36,9 @@ int main() {
     orders.emplace_back(3, 1003, Side::BUY, 650.0, 2, OrderType::LIMIT, "TSLA", 1632950600);
 
     std::unordered_map<std::string, double> stocks = {
-        {"AAPL", 150.0},
-        {"MSFT", 250.0},
-        {"TSLA", 650.0}
+        {"AAPL", 100.0},
+        {"MSFT", 100.0},
+        {"TSLA", 100.0}
     };
 
     std::cout << "Starting core system...\n\n";
@@ -47,7 +47,7 @@ int main() {
     trading_system.start();
     trading_system.receiveStocks(stocks);
 
-    // trading_system.receiveOrders(orders);
+    trading_system.receiveOrders(orders);
 
     std::this_thread::sleep_for(std::chrono::seconds(10));
 

@@ -10,10 +10,9 @@ void PriceUpdater::updatePrices() {
         std::string symbol = pair.first;
         double currentPrice = pair.second;
 
-        //simulate price movement
-        double randomFactor = mu * dt + sigma + sqrt(dt) * ((rand() % 1000) / 1000.0); //random walk
-        stockPrices[symbol] = currentPrice * exp(randomFactor);
-        std:: cout << symbol << " " << currentPrice << " " << randomFactor << std::endl;
+        //simulate price movement using Geometric Brownian Motion
+        stockPrices[symbol] = gbm(currentPrice);
+        std:: cout << symbol << " " << stockPrices[symbol] << std::endl;
     }
 }
 
@@ -34,5 +33,13 @@ void PriceUpdater::start() {
 
 void PriceUpdater::stop() {
     running = false;
+    if (priceThread.joinable()) {
+        priceThread.join();
+    }
+}
+
+double PriceUpdater::gbm(double currentPrice) {
+    double Z = distribution(generator);
+    return (currentPrice * exp((mu - 0.5 * sigma * sigma) * dt + sigma * sqrt(dt) * Z));
 }
 

@@ -28,6 +28,8 @@ class PriceUpdater {
     std::default_random_engine generator;
     std::normal_distribution<double> distribution;
 
+    double gbm(double currentPrice);
+
     void updatePrices();
 };
 

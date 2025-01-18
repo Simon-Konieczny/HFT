@@ -3,6 +3,7 @@
 #include <memory>
 
 void MatchingEngine::processOrder(const Order& order){
+    std::cout<<"processing order: " << order.id <<std::endl;
     if (orderBooks.find(order.identifier) == orderBooks.end()) {
         orderBooks[order.identifier] = std::make_unique<OrderBook>();
     }
