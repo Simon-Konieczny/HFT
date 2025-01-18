@@ -1,6 +1,0 @@
-# ninja log v6
-15	532	7585909050002859	CMakeFiles/core_engine.dir/main.cpp.obj	f888d9a74eec1180
-7	1654	7585919087377587	core_engine.exe	ff85f6b0da06b8e8
-7	751	7585909049919433	CMakeFiles/core_engine.dir/src/order_book.cpp.obj	dd53c6978096abe9
-3	526	7585922577910332	build.ninja	2fcdee02abefb1b2
-7	1428	7585909626293679	CMakeFiles/core_engine.dir/tests/order_book_tests.cpp.obj	b7a01a1d6eca5af1

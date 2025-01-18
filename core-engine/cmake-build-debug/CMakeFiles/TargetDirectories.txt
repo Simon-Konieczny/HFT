@@ -1,4 +1,0 @@
-C:/Users/konie/CLionProjects/HFT/core-engine/cmake-build-debug/CMakeFiles/core_engine.dir
-C:/Users/konie/CLionProjects/HFT/core-engine/cmake-build-debug/CMakeFiles/test.dir
-C:/Users/konie/CLionProjects/HFT/core-engine/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/konie/CLionProjects/HFT/core-engine/cmake-build-debug/CMakeFiles/rebuild_cache.dir

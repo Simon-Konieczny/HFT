@@ -1,0 +1,4 @@
+C:\Users\konie\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/konie/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -G Ninja -DCMAKE_TOOLCHAIN_FILE=C:/Users/konie/vcpkg/scripts/buildsystems/vcpkg.cmake -S C:\Users\konie\CLionProjects\HFT\core-engine -B C:\Users\konie\CLionProjects\HFT\core-engine\cmake-build-debug-mingw
+-- Configuring done (0.3s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/konie/CLionProjects/HFT/core-engine/cmake-build-debug-mingw

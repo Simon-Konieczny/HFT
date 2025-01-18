@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "core_engine::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-core_engine-Debug-e977ca73be390bfdffe8.json",
+					"jsonFile" : "target-core_engine-Debug-1af9a7f8cf1c6286be64.json",
 					"name" : "core_engine",
 					"projectIndex" : 0
 				}
@@ -49,7 +49,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/konie/CLionProjects/HFT/core-engine/cmake-build-debug",
+		"build" : "C:/Users/konie/CLionProjects/HFT/core-engine/cmake-build-debug-mingw",
 		"source" : "C:/Users/konie/CLionProjects/HFT/core-engine"
 	},
 	"version" : 

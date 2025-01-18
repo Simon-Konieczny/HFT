@@ -1,9 +1,10 @@
 #include "../include/order_book.hpp"
 #include <stdexcept>
+#include <algorithm>
 
 OrderBook::OrderBook() {
     buy_orders = std::map<double, std::set<Order, OrderComparator>>();
-    sell_orders = std::map<double, std::set<Order, OrderComparator>>();
+    sell_orders = std::map<double, std::set<Order, OrderComparator>, std::greater<>>();
 }
 
 void OrderBook::addOrder(const Order& order) {
@@ -19,7 +20,7 @@ void OrderBook::addOrder(const Order& order) {
 bool OrderBook::removeOrder(int order_id) {
     for (auto it = buy_orders.begin(); it != buy_orders.end(); ++it) {
        auto& order_set = it->second;
-        auto order_it = std::ranges::find_if(order_set.begin(), order_set.end(), [order_id](const Order& o) {
+        auto order_it = std::find_if(order_set.begin(), order_set.end(), [order_id](const Order& o) {
             return o.id == order_id;
         });
         if (order_it != order_set.end()) {
@@ -33,7 +34,7 @@ bool OrderBook::removeOrder(int order_id) {
 
     for (auto it = sell_orders.begin(); it != sell_orders.end(); ++it) {
         auto& order_set = it->second;
-        auto order_it = std::ranges::find_if(order_set.begin(), order_set.end(), [order_id](const Order& o) {
+        auto order_it = std::find_if(order_set.begin(), order_set.end(), [order_id](const Order& o) {
             return o.id == order_id;
         });
         if (order_it != order_set.end()) {
@@ -48,57 +49,64 @@ bool OrderBook::removeOrder(int order_id) {
     return false;
 }
 
-bool OrderBook::contains(const struct Order &order) {
-    for (auto it = buy_orders.begin(); it != buy_orders.end(); ++it) {
-        if (it->second.contains(order)) {
-            return true;
-        }
+void OrderBook::processOrder(const Order& order) {
+    if (order.side == Side::BUY) {
+        matchBuyOrder(order);
+    } else if (order.side == Side::SELL) {
+        matchSellOrder(order);
+    } else {
+        throw std::invalid_argument("Invalid order side");
     }
-    for (auto it = sell_orders.begin(); it != sell_orders.end(); ++it) {
-        if (it->second.contains(order)) {
-            return true;
-        }
-    }
-    return false;
 }
 
+void OrderBook::matchBuyOrder(const Order &order) {
+    while (order.quantity > 0 && !sell_orders.empty()) {
+        auto& [price, sellQueue] = *sell_orders.begin();
 
-std::pair<Order, int> OrderBook::matchOrder(Order &incoming_order) {
-    auto& opposite_orders = incoming_order.side == Side::BUY ? (sell_orders) : buy_orders;
-
-    while (incoming_order.quantity > 0 && !opposite_orders.empty()) {
-        auto best_price_it = opposite_orders.begin();
-        auto& best_order_set = best_price_it->second;
-        auto best_order_it = best_order_set.begin();
-
-        Order best_order = *best_order_it;
-
-        // check price condition for limit orders
-        if (incoming_order.type == OrderType::LIMIT &&
-            ((incoming_order.side == Side::BUY && incoming_order.price < best_order.price) ||
-                (incoming_order.side == Side::SELL && incoming_order.price > best_order.price))) {
-            break;
-                }
-
-        // calculate the matched quantity
-        int matched_quantity = std::min(incoming_order.quantity, best_order.quantity);
-        incoming_order.quantity -= matched_quantity;
-
-        // update or remove the matched order
-        best_order.quantity -= matched_quantity;
-        best_order_set.erase(best_order_it);
-        if (best_order.quantity > 0) {
-            best_order_set.insert(best_order);
-        }
-        if (best_order_set.empty()) {
-            opposite_orders.erase(best_price_it);
+        if (price > order.price) {
+            break; // no match possible
         }
 
-        return {best_order, matched_quantity};
+        auto& sellOrder = *sellQueue.begin();
+        int matchQuantity = std::min(order.quantity, sellOrder.quantity);
+
+        order.quantity -= matchQuantity;
+        sellOrder.quantity -= matchQuantity;
+
+        std:: cout << "Matched: " << matchQuantity << " at price : " << price << std::endl;
+
+        if (sellOrder.quantity == 0) sellQueue.erase(sellQueue.begin());
+        if (sellQueue.empty()) sell_orders.erase(order.price);
     }
 
-    return {Order(-1, Side::BUY, 0.0, 0, OrderType::MARKET, 0), 0}; // no match
+    if (order.quantity > 0) {
+        buy_orders[order.price].insert(order); // add remaining order
+    }
 }
+
+void OrderBook::matchSellOrder(const Order &order) {
+    while (order.quantity > 0 && !buy_orders.empty()) {
+        auto& [price, buyQueue] = *buy_orders.begin();
+
+        if (price < order.price) break; // no match possible
+
+        auto& sellOrder = *buyQueue.begin();
+        int matchQuantity = std::min(order.quantity, sellOrder.quantity);
+
+        order.quantity -= matchQuantity;
+        sellOrder.quantity -= matchQuantity;
+
+        std:: cout << "Matched: " << matchQuantity << " at price : " << price << std::endl;
+
+        if (sellOrder.quantity == 0) buyQueue.erase(buyQueue.begin());
+        if (buyQueue.empty()) sell_orders.erase(order.price);
+    }
+
+    if (order.quantity > 0) {
+        sell_orders[order.price].insert(order); // add remaining order
+    }
+}
+
 
 
 
