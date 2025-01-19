@@ -10,7 +10,7 @@ void PriceUpdater::updatePrices() {
         std::string symbol = pair.first;
         double currentPrice = pair.second;
 
-        //simulate price movement using Geometric Brownian Motion
+        // simulate price movement using Geometric Brownian Motion
         stockPrices[symbol] = gbm(currentPrice);
         std:: cout << symbol << " " << stockPrices[symbol] << std::endl;
     }
