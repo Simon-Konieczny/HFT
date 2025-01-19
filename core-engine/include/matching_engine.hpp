@@ -10,10 +10,9 @@
 class MatchingEngine {
   private:
     std::unordered_map<std::string, std::unique_ptr<OrderBook>> orderBooks;
-    void matchBuyOrder();
 
   public:
-    void processOrder(const Order& order);
+    std::vector<MatchedOrder> processOrder(const Order& order);
     void printOrderBook(const std::string& symbol);
 };
 

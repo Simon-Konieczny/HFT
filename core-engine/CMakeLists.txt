@@ -19,10 +19,8 @@ add_executable(core_engine
         main.cpp
 )
 
-find_package(GTest REQUIRED)
+find_package(ZeroMQ CONFIG REQUIRED)
+target_link_libraries(core_engine PRIVATE libzmq libzmq-static)
 
-target_link_libraries(core_engine GTest::GTest GTest::Main)
-
-# Enable testing and add the test executable
-enable_testing()
-add_test(NAME order_book_tests COMMAND core_engine)
+find_package(cppzmq CONFIG REQUIRED)
+target_link_libraries(core_engine PRIVATE cppzmq cppzmq-static)

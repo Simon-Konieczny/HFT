@@ -1,6 +1,8 @@
 #include "../include/order_book.hpp"
 #include <stdexcept>
 #include <algorithm>
+#include <unordered_map>
+#include <vector>
 
 OrderBook::OrderBook() {
     buy_orders = std::map<double, std::set<Order, OrderComparator>>();
@@ -49,17 +51,18 @@ bool OrderBook::removeOrder(int order_id) {
     return false;
 }
 
-void OrderBook::processOrder(const Order& order) {
+MatchedOrder OrderBook::processOrder(const Order& order) {
     if (order.side == Side::BUY) {
-        matchBuyOrder(order);
-    } else if (order.side == Side::SELL) {
-        matchSellOrder(order);
-    } else {
-        throw std::invalid_argument("Invalid order side");
+        return matchBuyOrder(order);
     }
+    if (order.side == Side::SELL) {
+        return matchSellOrder(order);
+    }
+    throw std::invalid_argument("Invalid order side");
 }
 
-void OrderBook::matchBuyOrder(const Order &order) {
+std::vector<MatchedOrder> OrderBook::matchBuyOrder(const Order &order) {
+    std::vector<MatchedOrder> matched_orders;
     while (order.quantity > 0 && !sell_orders.empty()) {
         auto& [price, sellQueue] = *sell_orders.begin();
 
@@ -74,6 +77,8 @@ void OrderBook::matchBuyOrder(const Order &order) {
         sellOrder.quantity -= matchQuantity;
 
         std:: cout << "Matched: " << matchQuantity << " at price : " << price << std::endl;
+        MatchedOrder matched_order(order.id, sellOrder.id, order.price, matchQuantity, order.identifier, order.type);
+        matched_orders.push_back(matched_order);
 
         if (sellOrder.quantity == 0) sellQueue.erase(sellQueue.begin());
         if (sellQueue.empty()) sell_orders.erase(order.price);
@@ -82,9 +87,11 @@ void OrderBook::matchBuyOrder(const Order &order) {
     if (order.quantity > 0) {
         buy_orders[order.price].insert(order); // add remaining order
     }
+
+    return matched_orders;
 }
 
-void OrderBook::matchSellOrder(const Order &order) {
+std::vector<MatchedOrder> OrderBook::matchSellOrder(const Order &order) {
     while (order.quantity > 0 && !buy_orders.empty()) {
         auto& [price, buyQueue] = *buy_orders.begin();
 
