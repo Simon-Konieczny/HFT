@@ -1,0 +1,164 @@
+\doxysection{Order\+Book Class Reference}
+\hypertarget{class_order_book}{}\label{class_order_book}\index{OrderBook@{OrderBook}}
+
+
+{\ttfamily \#include $<$order\+\_\+book.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_order_book_aa061a3b543e218b679e74d60fa8147ab}{add\+Order}} (const \mbox{\hyperlink{struct_order}{Order}} \&order)
+\item 
+bool \mbox{\hyperlink{class_order_book_afe9045725039364475cfd61fa951c89a}{remove\+Order}} (int order\+\_\+id)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_matched_order}{Matched\+Order}} $>$ \mbox{\hyperlink{class_order_book_a90b612e59c8cb3bd15f37dce482dda44}{process\+Order}} (const \mbox{\hyperlink{struct_order}{Order}} \&order)
+\item 
+\mbox{\hyperlink{class_order_book_ac5d132c051e3fdc1c17bd1bb0eb7f8e2}{Order\+Book}} ()
+\item 
+double \mbox{\hyperlink{class_order_book_a64e58a09b5263a1268c9223c567dea8e}{get\+Buy\+Volume}} () const
+\item 
+double \mbox{\hyperlink{class_order_book_aa50feb504dfaafed30954dae9b7c365f}{get\+Sell\+Volume}} () const
+\item 
+double \mbox{\hyperlink{class_order_book_aacd2d47362c8917cf4d4f5ba41929886}{get\+Average\+Volume}} () const
+\item 
+double \mbox{\hyperlink{class_order_book_a4259027a7f0fa6521e7a01477543bf24}{calculate\+Imbalance\+Volatility}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_matched_order}{Matched\+Order}} $>$ \mbox{\hyperlink{class_order_book_aba4a2e663cc027f2aa56a4c8a2a14899}{match\+Buy\+Order}} (const \mbox{\hyperlink{struct_order}{Order}} \&order)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_matched_order}{Matched\+Order}} $>$ \mbox{\hyperlink{class_order_book_af4f761075da322cd895401766c1dd4a9}{match\+Sell\+Order}} (const \mbox{\hyperlink{struct_order}{Order}} \&order)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ double, std\+::set$<$ \mbox{\hyperlink{struct_order}{Order}}, \mbox{\hyperlink{struct_order_comparator}{Order\+Comparator}} $>$ $>$ \mbox{\hyperlink{class_order_book_abfc50cb633857be7f4feb812573191e7}{buy\+\_\+orders}}
+\item 
+std\+::map$<$ double, std\+::set$<$ \mbox{\hyperlink{struct_order}{Order}}, \mbox{\hyperlink{struct_order_comparator}{Order\+Comparator}} $>$, std\+::greater$<$$>$ $>$ \mbox{\hyperlink{class_order_book_ab4eaaf428a2b0cba769c35a616408e0a}{sell\+\_\+orders}}
+\item 
+double \mbox{\hyperlink{class_order_book_afd9c9450c1e7fcf33a465554b6c406f3}{buy\+Volume}} = 0
+\item 
+double \mbox{\hyperlink{class_order_book_aca86a24a0b8f0a5970b6bac5ad15a9e4}{sell\+Volume}} = 0
+\item 
+int \mbox{\hyperlink{class_order_book_a87ff982c7598248e1a4abb0ef93fba27}{order\+Count}} = 0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{class_order_book_a58d4907d312838d61efb548db2645f74}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{class_order_book}{Order\+Book}} \&book)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_order_book_ac5d132c051e3fdc1c17bd1bb0eb7f8e2}\index{OrderBook@{OrderBook}!OrderBook@{OrderBook}}
+\index{OrderBook@{OrderBook}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{OrderBook()}{OrderBook()}}
+{\footnotesize\ttfamily \label{class_order_book_ac5d132c051e3fdc1c17bd1bb0eb7f8e2} 
+Order\+Book\+::\+Order\+Book (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_order_book_aa061a3b543e218b679e74d60fa8147ab}\index{OrderBook@{OrderBook}!addOrder@{addOrder}}
+\index{addOrder@{addOrder}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{addOrder()}{addOrder()}}
+{\footnotesize\ttfamily \label{class_order_book_aa061a3b543e218b679e74d60fa8147ab} 
+void Order\+Book\+::add\+Order (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_order}{Order}} \&}]{order}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_order_book_a4259027a7f0fa6521e7a01477543bf24}\index{OrderBook@{OrderBook}!calculateImbalanceVolatility@{calculateImbalanceVolatility}}
+\index{calculateImbalanceVolatility@{calculateImbalanceVolatility}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{calculateImbalanceVolatility()}{calculateImbalanceVolatility()}}
+{\footnotesize\ttfamily \label{class_order_book_a4259027a7f0fa6521e7a01477543bf24} 
+double Order\+Book\+::calculate\+Imbalance\+Volatility (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_order_book_aacd2d47362c8917cf4d4f5ba41929886}\index{OrderBook@{OrderBook}!getAverageVolume@{getAverageVolume}}
+\index{getAverageVolume@{getAverageVolume}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{getAverageVolume()}{getAverageVolume()}}
+{\footnotesize\ttfamily \label{class_order_book_aacd2d47362c8917cf4d4f5ba41929886} 
+double Order\+Book\+::get\+Average\+Volume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_order_book_a64e58a09b5263a1268c9223c567dea8e}\index{OrderBook@{OrderBook}!getBuyVolume@{getBuyVolume}}
+\index{getBuyVolume@{getBuyVolume}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{getBuyVolume()}{getBuyVolume()}}
+{\footnotesize\ttfamily \label{class_order_book_a64e58a09b5263a1268c9223c567dea8e} 
+double Order\+Book\+::get\+Buy\+Volume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_order_book_aa50feb504dfaafed30954dae9b7c365f}\index{OrderBook@{OrderBook}!getSellVolume@{getSellVolume}}
+\index{getSellVolume@{getSellVolume}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{getSellVolume()}{getSellVolume()}}
+{\footnotesize\ttfamily \label{class_order_book_aa50feb504dfaafed30954dae9b7c365f} 
+double Order\+Book\+::get\+Sell\+Volume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_order_book_aba4a2e663cc027f2aa56a4c8a2a14899}\index{OrderBook@{OrderBook}!matchBuyOrder@{matchBuyOrder}}
+\index{matchBuyOrder@{matchBuyOrder}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{matchBuyOrder()}{matchBuyOrder()}}
+{\footnotesize\ttfamily \label{class_order_book_aba4a2e663cc027f2aa56a4c8a2a14899} 
+std\+::vector$<$ \mbox{\hyperlink{struct_matched_order}{Matched\+Order}} $>$ Order\+Book\+::match\+Buy\+Order (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_order}{Order}} \&}]{order}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_order_book_af4f761075da322cd895401766c1dd4a9}\index{OrderBook@{OrderBook}!matchSellOrder@{matchSellOrder}}
+\index{matchSellOrder@{matchSellOrder}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{matchSellOrder()}{matchSellOrder()}}
+{\footnotesize\ttfamily \label{class_order_book_af4f761075da322cd895401766c1dd4a9} 
+std\+::vector$<$ \mbox{\hyperlink{struct_matched_order}{Matched\+Order}} $>$ Order\+Book\+::match\+Sell\+Order (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_order}{Order}} \&}]{order}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_order_book_a90b612e59c8cb3bd15f37dce482dda44}\index{OrderBook@{OrderBook}!processOrder@{processOrder}}
+\index{processOrder@{processOrder}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{processOrder()}{processOrder()}}
+{\footnotesize\ttfamily \label{class_order_book_a90b612e59c8cb3bd15f37dce482dda44} 
+std\+::vector$<$ \mbox{\hyperlink{struct_matched_order}{Matched\+Order}} $>$ Order\+Book\+::process\+Order (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_order}{Order}} \&}]{order}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_order_book_afe9045725039364475cfd61fa951c89a}\index{OrderBook@{OrderBook}!removeOrder@{removeOrder}}
+\index{removeOrder@{removeOrder}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{removeOrder()}{removeOrder()}}
+{\footnotesize\ttfamily \label{class_order_book_afe9045725039364475cfd61fa951c89a} 
+bool Order\+Book\+::remove\+Order (\begin{DoxyParamCaption}\item[{int}]{order\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{class_order_book_a58d4907d312838d61efb548db2645f74}\index{OrderBook@{OrderBook}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily \label{class_order_book_a58d4907d312838d61efb548db2645f74} 
+std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os}{, }\item[{const \mbox{\hyperlink{class_order_book}{Order\+Book}} \&}]{book}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_order_book_abfc50cb633857be7f4feb812573191e7}\index{OrderBook@{OrderBook}!buy\_orders@{buy\_orders}}
+\index{buy\_orders@{buy\_orders}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{buy\_orders}{buy\_orders}}
+{\footnotesize\ttfamily \label{class_order_book_abfc50cb633857be7f4feb812573191e7} 
+std\+::map$<$double, std\+::set$<$\mbox{\hyperlink{struct_order}{Order}}, \mbox{\hyperlink{struct_order_comparator}{Order\+Comparator}}$>$ $>$ Order\+Book\+::buy\+\_\+orders\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_order_book_afd9c9450c1e7fcf33a465554b6c406f3}\index{OrderBook@{OrderBook}!buyVolume@{buyVolume}}
+\index{buyVolume@{buyVolume}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{buyVolume}{buyVolume}}
+{\footnotesize\ttfamily \label{class_order_book_afd9c9450c1e7fcf33a465554b6c406f3} 
+double Order\+Book\+::buy\+Volume = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_order_book_a87ff982c7598248e1a4abb0ef93fba27}\index{OrderBook@{OrderBook}!orderCount@{orderCount}}
+\index{orderCount@{orderCount}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{orderCount}{orderCount}}
+{\footnotesize\ttfamily \label{class_order_book_a87ff982c7598248e1a4abb0ef93fba27} 
+int Order\+Book\+::order\+Count = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_order_book_ab4eaaf428a2b0cba769c35a616408e0a}\index{OrderBook@{OrderBook}!sell\_orders@{sell\_orders}}
+\index{sell\_orders@{sell\_orders}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{sell\_orders}{sell\_orders}}
+{\footnotesize\ttfamily \label{class_order_book_ab4eaaf428a2b0cba769c35a616408e0a} 
+std\+::map$<$double, std\+::set$<$\mbox{\hyperlink{struct_order}{Order}}, \mbox{\hyperlink{struct_order_comparator}{Order\+Comparator}}$>$, std\+::greater$<$$>$ $>$ Order\+Book\+::sell\+\_\+orders\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_order_book_aca86a24a0b8f0a5970b6bac5ad15a9e4}\index{OrderBook@{OrderBook}!sellVolume@{sellVolume}}
+\index{sellVolume@{sellVolume}!OrderBook@{OrderBook}}
+\doxysubsubsection{\texorpdfstring{sellVolume}{sellVolume}}
+{\footnotesize\ttfamily \label{class_order_book_aca86a24a0b8f0a5970b6bac5ad15a9e4} 
+double Order\+Book\+::sell\+Volume = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{order__book_8hpp}{order\+\_\+book.\+hpp}}\item 
+src/\mbox{\hyperlink{order__book_8cpp}{order\+\_\+book.\+cpp}}\end{DoxyCompactItemize}

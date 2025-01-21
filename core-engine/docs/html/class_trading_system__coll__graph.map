@@ -1,0 +1,9 @@
+<map id="TradingSystem" name="TradingSystem">
+<area shape="rect" id="Node000001" title=" " alt="" coords="94,203,204,229"/>
+<area shape="rect" id="Node000002" href="$class_price_updater.html" title=" " alt="" coords="35,112,132,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,153,97,177,109,190,123,200,120,204,105,194,93,180,83,155"/>
+<area shape="rect" id="Node000003" href="$class_thread_safe_queue.html" title=" " alt="" coords="5,5,162,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="86,64,86,112,81,112,81,64"/>
+<area shape="rect" id="Node000004" href="$class_matching_engine.html" title=" " alt="" coords="156,112,270,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="199,153,180,180,162,204,157,201,176,177,195,150"/>
+</map>

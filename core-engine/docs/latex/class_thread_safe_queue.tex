@@ -1,0 +1,77 @@
+\doxysection{Thread\+Safe\+Queue\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_thread_safe_queue}{}\label{class_thread_safe_queue}\index{ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}}
+
+
+{\ttfamily \#include $<$price\+\_\+updater.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_thread_safe_queue_a815452f980fe394e90aa0f5747f7350a}{push}} (const T \&value)
+\item 
+bool \mbox{\hyperlink{class_thread_safe_queue_abf67a1a035955b64189c2ae3ae8d8ef9}{try\+\_\+pop}} (T \&value)
+\item 
+bool \mbox{\hyperlink{class_thread_safe_queue_a48fb982ab815c6a3954b73a74e1e0888}{empty}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::queue$<$ T $>$ \mbox{\hyperlink{class_thread_safe_queue_a15094180e0624d976b22327d6c6ef1c2}{queue}}
+\item 
+std\+::mutex \mbox{\hyperlink{class_thread_safe_queue_ac15713986ff635257d18ae678cdd9f32}{mutex}}
+\item 
+std\+::condition\+\_\+variable \mbox{\hyperlink{class_thread_safe_queue_a4233010552d090df7841c6370bcbcd3d}{cond\+Var}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_thread_safe_queue_a48fb982ab815c6a3954b73a74e1e0888}\index{ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}!empty@{empty}}
+\index{empty@{empty}!ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily \label{class_thread_safe_queue_a48fb982ab815c6a3954b73a74e1e0888} 
+template$<$typename T$>$ \\
+bool \mbox{\hyperlink{class_thread_safe_queue}{Thread\+Safe\+Queue}}$<$ T $>$\+::empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_thread_safe_queue_a815452f980fe394e90aa0f5747f7350a}\index{ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}!push@{push}}
+\index{push@{push}!ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily \label{class_thread_safe_queue_a815452f980fe394e90aa0f5747f7350a} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{class_thread_safe_queue}{Thread\+Safe\+Queue}}$<$ T $>$\+::push (\begin{DoxyParamCaption}\item[{const T \&}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_thread_safe_queue_abf67a1a035955b64189c2ae3ae8d8ef9}\index{ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}!try\_pop@{try\_pop}}
+\index{try\_pop@{try\_pop}!ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{try\_pop()}{try\_pop()}}
+{\footnotesize\ttfamily \label{class_thread_safe_queue_abf67a1a035955b64189c2ae3ae8d8ef9} 
+template$<$typename T$>$ \\
+bool \mbox{\hyperlink{class_thread_safe_queue}{Thread\+Safe\+Queue}}$<$ T $>$\+::try\+\_\+pop (\begin{DoxyParamCaption}\item[{T \&}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_thread_safe_queue_a4233010552d090df7841c6370bcbcd3d}\index{ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}!condVar@{condVar}}
+\index{condVar@{condVar}!ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{condVar}{condVar}}
+{\footnotesize\ttfamily \label{class_thread_safe_queue_a4233010552d090df7841c6370bcbcd3d} 
+template$<$typename T$>$ \\
+std\+::condition\+\_\+variable \mbox{\hyperlink{class_thread_safe_queue}{Thread\+Safe\+Queue}}$<$ T $>$\+::cond\+Var\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_thread_safe_queue_ac15713986ff635257d18ae678cdd9f32}\index{ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}!mutex@{mutex}}
+\index{mutex@{mutex}!ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily \label{class_thread_safe_queue_ac15713986ff635257d18ae678cdd9f32} 
+template$<$typename T$>$ \\
+std\+::mutex \mbox{\hyperlink{class_thread_safe_queue}{Thread\+Safe\+Queue}}$<$ T $>$\+::mutex\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_thread_safe_queue_a15094180e0624d976b22327d6c6ef1c2}\index{ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}!queue@{queue}}
+\index{queue@{queue}!ThreadSafeQueue$<$ T $>$@{ThreadSafeQueue$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{queue}{queue}}
+{\footnotesize\ttfamily \label{class_thread_safe_queue_a15094180e0624d976b22327d6c6ef1c2} 
+template$<$typename T$>$ \\
+std\+::queue$<$T$>$ \mbox{\hyperlink{class_thread_safe_queue}{Thread\+Safe\+Queue}}$<$ T $>$\+::queue\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{price__updater_8hpp}{price\+\_\+updater.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,87 @@
+\doxysection{include/order.hpp File Reference}
+\hypertarget{order_8hpp}{}\label{order_8hpp}\index{include/order.hpp@{include/order.hpp}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+Include dependency graph for order.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{order_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{order_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_order}{Order}}
+\item 
+struct \mbox{\hyperlink{struct_matched_order}{Matched\+Order}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{order_8hpp_a57124e387290311f33f3b54a54930418}{Order\+Type}} \{ \mbox{\hyperlink{order_8hpp_a57124e387290311f33f3b54a54930418affb8d99dc885d37eec36c5497244cba8}{MARKET}}
+, \mbox{\hyperlink{order_8hpp_a57124e387290311f33f3b54a54930418a3d49b5cb41d88e381beb0d887d7023a2}{LIMIT}}
+ \}
+\item 
+enum class \mbox{\hyperlink{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00}{Side}} \{ \mbox{\hyperlink{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00ac45b496ec0828772c8088e4118f09b33}{BUY}}
+, \mbox{\hyperlink{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00a860926e6fc3f191e18ee7a98259164b8}{SELL}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{order_8hpp_aecef94cdc6bc8a888aded4630ba4ae7f}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{struct_order}{Order}} \&order)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{order_8hpp_a57124e387290311f33f3b54a54930418}\index{order.hpp@{order.hpp}!OrderType@{OrderType}}
+\index{OrderType@{OrderType}!order.hpp@{order.hpp}}
+\doxysubsubsection{\texorpdfstring{OrderType}{OrderType}}
+{\footnotesize\ttfamily \label{order_8hpp_a57124e387290311f33f3b54a54930418} 
+enum class \mbox{\hyperlink{order_8hpp_a57124e387290311f33f3b54a54930418}{Order\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MARKET@{MARKET}!order.hpp@{order.hpp}}\index{order.hpp@{order.hpp}!MARKET@{MARKET}}}\Hypertarget{order_8hpp_a57124e387290311f33f3b54a54930418affb8d99dc885d37eec36c5497244cba8}\label{order_8hpp_a57124e387290311f33f3b54a54930418affb8d99dc885d37eec36c5497244cba8} 
+MARKET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LIMIT@{LIMIT}!order.hpp@{order.hpp}}\index{order.hpp@{order.hpp}!LIMIT@{LIMIT}}}\Hypertarget{order_8hpp_a57124e387290311f33f3b54a54930418a3d49b5cb41d88e381beb0d887d7023a2}\label{order_8hpp_a57124e387290311f33f3b54a54930418a3d49b5cb41d88e381beb0d887d7023a2} 
+LIMIT&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00}\index{order.hpp@{order.hpp}!Side@{Side}}
+\index{Side@{Side}!order.hpp@{order.hpp}}
+\doxysubsubsection{\texorpdfstring{Side}{Side}}
+{\footnotesize\ttfamily \label{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00} 
+enum class \mbox{\hyperlink{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00}{Side}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BUY@{BUY}!order.hpp@{order.hpp}}\index{order.hpp@{order.hpp}!BUY@{BUY}}}\Hypertarget{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00ac45b496ec0828772c8088e4118f09b33}\label{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00ac45b496ec0828772c8088e4118f09b33} 
+BUY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SELL@{SELL}!order.hpp@{order.hpp}}\index{order.hpp@{order.hpp}!SELL@{SELL}}}\Hypertarget{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00a860926e6fc3f191e18ee7a98259164b8}\label{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00a860926e6fc3f191e18ee7a98259164b8} 
+SELL&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{order_8hpp_aecef94cdc6bc8a888aded4630ba4ae7f}\index{order.hpp@{order.hpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!order.hpp@{order.hpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily \label{order_8hpp_aecef94cdc6bc8a888aded4630ba4ae7f} 
+std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os}{, }\item[{const \mbox{\hyperlink{struct_order}{Order}} \&}]{order}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+

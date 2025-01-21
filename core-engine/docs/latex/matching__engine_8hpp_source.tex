@@ -1,0 +1,26 @@
+\doxysection{matching\+\_\+engine.\+hpp}
+\hypertarget{matching__engine_8hpp_source}{}\label{matching__engine_8hpp_source}\index{include/matching\_engine.hpp@{include/matching\_engine.hpp}}
+\mbox{\hyperlink{matching__engine_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MATCHING\_ENGINE\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MATCHING\_ENGINE\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{order__book_8hpp}{order\_book.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_matching_engine_a48f208bb12dc1c70dbc87f9b1331d76f}{MatchingEngine}}\ \{}
+\DoxyCodeLine{00011\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00012\ \ \ \ \ std::unordered\_map<std::string,\ std::unique\_ptr<OrderBook>>\&\ \mbox{\hyperlink{class_matching_engine_a10a445c429b427ad852d473175f4507a}{orderBooks}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_matching_engine_a48f208bb12dc1c70dbc87f9b1331d76f}{MatchingEngine}}(std::unordered\_map<std::string,\ std::unique\_ptr<OrderBook>>\&\ \mbox{\hyperlink{class_matching_engine_a10a445c429b427ad852d473175f4507a}{orderBooks}})\ :\ \mbox{\hyperlink{class_matching_engine_a10a445c429b427ad852d473175f4507a}{orderBooks}}(\mbox{\hyperlink{class_matching_engine_a10a445c429b427ad852d473175f4507a}{orderBooks}})\ \{\};}
+\DoxyCodeLine{00016\ \ \ \ \ std::vector<MatchedOrder>\ \mbox{\hyperlink{class_matching_engine_aac6d08f0f58638351a5fe63a202c860c}{processOrder}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_order}{Order}}\&\ order);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_matching_engine_ac79962b280fe4e22739f48f56cde2503}{printOrderBook}}(\textcolor{keyword}{const}\ std::string\&\ symbol);}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

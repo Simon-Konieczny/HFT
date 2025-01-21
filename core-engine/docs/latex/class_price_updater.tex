@@ -1,0 +1,195 @@
+\doxysection{Price\+Updater Class Reference}
+\hypertarget{class_price_updater}{}\label{class_price_updater}\index{PriceUpdater@{PriceUpdater}}
+
+
+{\ttfamily \#include $<$price\+\_\+updater.\+hpp$>$}
+
+
+
+Collaboration diagram for Price\+Updater\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{class_price_updater__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_price_updater_afb1f4590fe7abdc116a7d84d8dc6c452}{Price\+Updater}} (std\+::unordered\+\_\+map$<$ std\+::string, double $>$ \&\mbox{\hyperlink{class_price_updater_a64d6f0d68c33f90d80a629a8f1c32d52}{stock\+Prices}}, std\+::mutex \&\mbox{\hyperlink{class_price_updater_a3cc0e20c4223b3fdb8b907b7e70a5d9d}{price\+Mutex}}, std\+::unordered\+\_\+map$<$ std\+::string, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_order_book}{Order\+Book}} $>$ $>$ \&\mbox{\hyperlink{class_price_updater_ae742b94294acd678ea43a3aab06c9bca}{order\+Books}})
+\item 
+void \mbox{\hyperlink{class_price_updater_a7f028b39dcd10225771e95269631891c}{stop}} ()
+\item 
+void \mbox{\hyperlink{class_price_updater_aeef5fc4b3e0f82c01596065fac581547}{run}} ()
+\item 
+void \mbox{\hyperlink{class_price_updater_aae48ad5f35eb179d8e3a2a3802ce3c66}{add\+Event}} (const std\+::string \&event\+\_\+data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_price_updater_ac6675ac21bb2640aab7ce0db1cc5e016}{update\+Prices}} (std\+::string \&event\+\_\+data)
+\item 
+double \mbox{\hyperlink{class_price_updater_a1fdf80b17ffbdf9c34c6d8de05b58198}{random\+Gaussian}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::tuple$<$ std\+::string, std\+::string, std\+::string, std\+::string, std\+::string $>$ \mbox{\hyperlink{class_price_updater_a9afc59a3e993705d27344079e2e4237a}{parse\+Price\+Update\+Event}} (const std\+::string \&event\+\_\+data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_price_updater_a3595881da24b2ad72399b7cb4a7284d9}{running}}
+\item 
+\mbox{\hyperlink{class_thread_safe_queue}{Thread\+Safe\+Queue}}$<$ std\+::string $>$ \mbox{\hyperlink{class_price_updater_a026539c98bcab3900318ae348987f146}{event\+Queue}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, double $>$ \& \mbox{\hyperlink{class_price_updater_a64d6f0d68c33f90d80a629a8f1c32d52}{stock\+Prices}}
+\item 
+std\+::mutex \& \mbox{\hyperlink{class_price_updater_a3cc0e20c4223b3fdb8b907b7e70a5d9d}{price\+Mutex}}
+\item 
+double \mbox{\hyperlink{class_price_updater_aa495dd6c70e4a110533df45949065cab}{base\+Drift}} = 0.\+001
+\item 
+double \mbox{\hyperlink{class_price_updater_a48ca464721ae9570ac04abdcb050801e}{base\+Volatility}} = 0.\+01
+\item 
+double \mbox{\hyperlink{class_price_updater_aa44334a49b3b7e6379cec11a28469302}{lambda}} = 0.\+1
+\item 
+double \mbox{\hyperlink{class_price_updater_ac37e5e07cf2c836ac92a9b200ea42e5c}{beta}} = 0.\+05
+\item 
+double \mbox{\hyperlink{class_price_updater_a503df62c141c1066f296c2ce77ad1706}{alpha}} = 0.\+1
+\item 
+std\+::mt19937 \mbox{\hyperlink{class_price_updater_a4aec3c11ad07d0fc876aabafad3f02c5}{generator}}
+\item 
+std\+::normal\+\_\+distribution$<$ double $>$ \mbox{\hyperlink{class_price_updater_aa31fc21b2c8b266821addafef1201a18}{distribution}}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_order_book}{Order\+Book}} $>$ $>$ \& \mbox{\hyperlink{class_price_updater_ae742b94294acd678ea43a3aab06c9bca}{order\+Books}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_price_updater_afb1f4590fe7abdc116a7d84d8dc6c452}\index{PriceUpdater@{PriceUpdater}!PriceUpdater@{PriceUpdater}}
+\index{PriceUpdater@{PriceUpdater}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{PriceUpdater()}{PriceUpdater()}}
+{\footnotesize\ttfamily \label{class_price_updater_afb1f4590fe7abdc116a7d84d8dc6c452} 
+Price\+Updater\+::\+Price\+Updater (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+map$<$ std\+::string, double $>$ \&}]{stock\+Prices}{, }\item[{std\+::mutex \&}]{price\+Mutex}{, }\item[{std\+::unordered\+\_\+map$<$ std\+::string, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_order_book}{Order\+Book}} $>$ $>$ \&}]{order\+Books}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_price_updater_aae48ad5f35eb179d8e3a2a3802ce3c66}\index{PriceUpdater@{PriceUpdater}!addEvent@{addEvent}}
+\index{addEvent@{addEvent}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{addEvent()}{addEvent()}}
+{\footnotesize\ttfamily \label{class_price_updater_aae48ad5f35eb179d8e3a2a3802ce3c66} 
+void Price\+Updater\+::add\+Event (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{event\+\_\+data}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_price_updater_a9afc59a3e993705d27344079e2e4237a}\index{PriceUpdater@{PriceUpdater}!parsePriceUpdateEvent@{parsePriceUpdateEvent}}
+\index{parsePriceUpdateEvent@{parsePriceUpdateEvent}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{parsePriceUpdateEvent()}{parsePriceUpdateEvent()}}
+{\footnotesize\ttfamily \label{class_price_updater_a9afc59a3e993705d27344079e2e4237a} 
+std\+::tuple$<$ std\+::string, std\+::string, std\+::string, std\+::string, std\+::string $>$ Price\+Updater\+::parse\+Price\+Update\+Event (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{event\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_a1fdf80b17ffbdf9c34c6d8de05b58198}\index{PriceUpdater@{PriceUpdater}!randomGaussian@{randomGaussian}}
+\index{randomGaussian@{randomGaussian}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{randomGaussian()}{randomGaussian()}}
+{\footnotesize\ttfamily \label{class_price_updater_a1fdf80b17ffbdf9c34c6d8de05b58198} 
+double Price\+Updater\+::random\+Gaussian (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_aeef5fc4b3e0f82c01596065fac581547}\index{PriceUpdater@{PriceUpdater}!run@{run}}
+\index{run@{run}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{class_price_updater_aeef5fc4b3e0f82c01596065fac581547} 
+void Price\+Updater\+::run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_price_updater_a7f028b39dcd10225771e95269631891c}\index{PriceUpdater@{PriceUpdater}!stop@{stop}}
+\index{stop@{stop}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{class_price_updater_a7f028b39dcd10225771e95269631891c} 
+void Price\+Updater\+::stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_price_updater_ac6675ac21bb2640aab7ce0db1cc5e016}\index{PriceUpdater@{PriceUpdater}!updatePrices@{updatePrices}}
+\index{updatePrices@{updatePrices}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{updatePrices()}{updatePrices()}}
+{\footnotesize\ttfamily \label{class_price_updater_ac6675ac21bb2640aab7ce0db1cc5e016} 
+void Price\+Updater\+::update\+Prices (\begin{DoxyParamCaption}\item[{std\+::string \&}]{event\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_price_updater_a503df62c141c1066f296c2ce77ad1706}\index{PriceUpdater@{PriceUpdater}!alpha@{alpha}}
+\index{alpha@{alpha}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily \label{class_price_updater_a503df62c141c1066f296c2ce77ad1706} 
+double Price\+Updater\+::alpha = 0.\+1\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_aa495dd6c70e4a110533df45949065cab}\index{PriceUpdater@{PriceUpdater}!baseDrift@{baseDrift}}
+\index{baseDrift@{baseDrift}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{baseDrift}{baseDrift}}
+{\footnotesize\ttfamily \label{class_price_updater_aa495dd6c70e4a110533df45949065cab} 
+double Price\+Updater\+::base\+Drift = 0.\+001\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_a48ca464721ae9570ac04abdcb050801e}\index{PriceUpdater@{PriceUpdater}!baseVolatility@{baseVolatility}}
+\index{baseVolatility@{baseVolatility}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{baseVolatility}{baseVolatility}}
+{\footnotesize\ttfamily \label{class_price_updater_a48ca464721ae9570ac04abdcb050801e} 
+double Price\+Updater\+::base\+Volatility = 0.\+01\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_ac37e5e07cf2c836ac92a9b200ea42e5c}\index{PriceUpdater@{PriceUpdater}!beta@{beta}}
+\index{beta@{beta}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{beta}{beta}}
+{\footnotesize\ttfamily \label{class_price_updater_ac37e5e07cf2c836ac92a9b200ea42e5c} 
+double Price\+Updater\+::beta = 0.\+05\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_aa31fc21b2c8b266821addafef1201a18}\index{PriceUpdater@{PriceUpdater}!distribution@{distribution}}
+\index{distribution@{distribution}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{distribution}{distribution}}
+{\footnotesize\ttfamily \label{class_price_updater_aa31fc21b2c8b266821addafef1201a18} 
+std\+::normal\+\_\+distribution$<$double$>$ Price\+Updater\+::distribution\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_a026539c98bcab3900318ae348987f146}\index{PriceUpdater@{PriceUpdater}!eventQueue@{eventQueue}}
+\index{eventQueue@{eventQueue}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{eventQueue}{eventQueue}}
+{\footnotesize\ttfamily \label{class_price_updater_a026539c98bcab3900318ae348987f146} 
+\mbox{\hyperlink{class_thread_safe_queue}{Thread\+Safe\+Queue}}$<$std\+::string$>$ Price\+Updater\+::event\+Queue\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_a4aec3c11ad07d0fc876aabafad3f02c5}\index{PriceUpdater@{PriceUpdater}!generator@{generator}}
+\index{generator@{generator}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{generator}{generator}}
+{\footnotesize\ttfamily \label{class_price_updater_a4aec3c11ad07d0fc876aabafad3f02c5} 
+std\+::mt19937 Price\+Updater\+::generator\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_aa44334a49b3b7e6379cec11a28469302}\index{PriceUpdater@{PriceUpdater}!lambda@{lambda}}
+\index{lambda@{lambda}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{lambda}{lambda}}
+{\footnotesize\ttfamily \label{class_price_updater_aa44334a49b3b7e6379cec11a28469302} 
+double Price\+Updater\+::lambda = 0.\+1\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_ae742b94294acd678ea43a3aab06c9bca}\index{PriceUpdater@{PriceUpdater}!orderBooks@{orderBooks}}
+\index{orderBooks@{orderBooks}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{orderBooks}{orderBooks}}
+{\footnotesize\ttfamily \label{class_price_updater_ae742b94294acd678ea43a3aab06c9bca} 
+std\+::unordered\+\_\+map$<$std\+::string, std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{class_order_book}{Order\+Book}}$>$ $>$\& Price\+Updater\+::order\+Books\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_a3cc0e20c4223b3fdb8b907b7e70a5d9d}\index{PriceUpdater@{PriceUpdater}!priceMutex@{priceMutex}}
+\index{priceMutex@{priceMutex}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{priceMutex}{priceMutex}}
+{\footnotesize\ttfamily \label{class_price_updater_a3cc0e20c4223b3fdb8b907b7e70a5d9d} 
+std\+::mutex\& Price\+Updater\+::price\+Mutex\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_a3595881da24b2ad72399b7cb4a7284d9}\index{PriceUpdater@{PriceUpdater}!running@{running}}
+\index{running@{running}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{running}{running}}
+{\footnotesize\ttfamily \label{class_price_updater_a3595881da24b2ad72399b7cb4a7284d9} 
+bool Price\+Updater\+::running\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_price_updater_a64d6f0d68c33f90d80a629a8f1c32d52}\index{PriceUpdater@{PriceUpdater}!stockPrices@{stockPrices}}
+\index{stockPrices@{stockPrices}!PriceUpdater@{PriceUpdater}}
+\doxysubsubsection{\texorpdfstring{stockPrices}{stockPrices}}
+{\footnotesize\ttfamily \label{class_price_updater_a64d6f0d68c33f90d80a629a8f1c32d52} 
+std\+::unordered\+\_\+map$<$std\+::string, double$>$\& Price\+Updater\+::stock\+Prices\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{price__updater_8hpp}{price\+\_\+updater.\+hpp}}\item 
+src/\mbox{\hyperlink{price__updater_8cpp}{price\+\_\+updater.\+cpp}}\end{DoxyCompactItemize}

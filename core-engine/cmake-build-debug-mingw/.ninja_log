@@ -1,0 +1,7 @@
+# ninja log v6
+1980	4417	7592012469013222	core_engine.exe	6aa1bb488a054b3c
+9	1284	7592009067502591	CMakeFiles/core_engine.dir/src/order_book.cpp.obj	ac7e21ae150e70ca
+18	1042	7592009067593437	CMakeFiles/core_engine.dir/src/matching_engine.cpp.obj	7ca72d1b1efd3e93
+8	1590	7592012449293455	CMakeFiles/core_engine.dir/src/price_updater.cpp.obj	317515ce83939428
+15	1972	7592012449366050	CMakeFiles/core_engine.dir/src/trading_system.cpp.obj	2a0a84d46820b272
+22	1980	7592012449427736	CMakeFiles/core_engine.dir/main.cpp.obj	9f8257433ac50252
