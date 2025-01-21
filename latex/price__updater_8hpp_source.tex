@@ -1,0 +1,90 @@
+\doxysection{price\+\_\+updater.\+hpp}
+\hypertarget{price__updater_8hpp_source}{}\label{price__updater_8hpp_source}\index{include/price\_updater.hpp@{include/price\_updater.hpp}}
+\mbox{\hyperlink{price__updater_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ price\_updater\_hpp}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ price\_updater\_hpp}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <queue>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{order__book_8hpp}{order\_book.hpp}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classThreadSafeQueue}{ThreadSafeQueue}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00018\ \ \ \ \ std::queue<T>\ \mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{queue}};}
+\DoxyCodeLine{00019\ \ \ \ \ std::mutex\ \mbox{\hyperlink{classThreadSafeQueue_ac15713986ff635257d18ae678cdd9f32}{mutex}};}
+\DoxyCodeLine{00020\ \ \ \ \ std::condition\_variable\ \mbox{\hyperlink{classThreadSafeQueue_a4233010552d090df7841c6370bcbcd3d}{condVar}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classThreadSafeQueue_a815452f980fe394e90aa0f5747f7350a}{push}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{T}}\&\ \mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{value}})\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ \mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{lock}}(\mbox{\hyperlink{classThreadSafeQueue_ac15713986ff635257d18ae678cdd9f32}{mutex}});}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{queue}}.push(\mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{value}});}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classThreadSafeQueue_a4233010552d090df7841c6370bcbcd3d}{condVar}}.notify\_one();}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classThreadSafeQueue_abf67a1a035955b64189c2ae3ae8d8ef9}{try\_pop}}(\mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{T}}\&\ \mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{value}})\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ \mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{lock}}(\mbox{\hyperlink{classThreadSafeQueue_ac15713986ff635257d18ae678cdd9f32}{mutex}});}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{queue}}.empty())\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{value}}\ =\ \mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{queue}}.front();}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{queue}}.pop();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classThreadSafeQueue_a48fb982ab815c6a3954b73a74e1e0888}{empty}}()\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::lock\_guard<std::mutex>\ \mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{lock}}(\mbox{\hyperlink{classThreadSafeQueue_ac15713986ff635257d18ae678cdd9f32}{mutex}});}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classThreadSafeQueue_a15094180e0624d976b22327d6c6ef1c2}{queue}}.empty();}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPriceUpdater}{PriceUpdater}}\ \{}
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classPriceUpdater_afb1f4590fe7abdc116a7d84d8dc6c452}{PriceUpdater}}(std::unordered\_map<std::string,\ double>\&\ \mbox{\hyperlink{classPriceUpdater_a64d6f0d68c33f90d80a629a8f1c32d52}{stockPrices}},\ std::mutex\&\ \mbox{\hyperlink{classPriceUpdater_a3cc0e20c4223b3fdb8b907b7e70a5d9d}{priceMutex}},\ std::unordered\_map<std::string,\ std::unique\_ptr<OrderBook>>\&\ \mbox{\hyperlink{classPriceUpdater_ae742b94294acd678ea43a3aab06c9bca}{orderBooks}})}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classPriceUpdater_a3595881da24b2ad72399b7cb4a7284d9}{running}}(true),\ \mbox{\hyperlink{classPriceUpdater_a64d6f0d68c33f90d80a629a8f1c32d52}{stockPrices}}(\mbox{\hyperlink{classPriceUpdater_a64d6f0d68c33f90d80a629a8f1c32d52}{stockPrices}}),\ \mbox{\hyperlink{classPriceUpdater_a3cc0e20c4223b3fdb8b907b7e70a5d9d}{priceMutex}}(\mbox{\hyperlink{classPriceUpdater_a3cc0e20c4223b3fdb8b907b7e70a5d9d}{priceMutex}}),\ \mbox{\hyperlink{classPriceUpdater_aa31fc21b2c8b266821addafef1201a18}{distribution}}(0.0,1.0),\ \mbox{\hyperlink{classPriceUpdater_ae742b94294acd678ea43a3aab06c9bca}{orderBooks}}(\mbox{\hyperlink{classPriceUpdater_ae742b94294acd678ea43a3aab06c9bca}{orderBooks}})\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ seed\ =\ std::chrono::system\_clock::now().time\_since\_epoch().count();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPriceUpdater_a4aec3c11ad07d0fc876aabafad3f02c5}{generator}}.seed(seed);}
+\DoxyCodeLine{00051\ \ \ \ \ \};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPriceUpdater_a7f028b39dcd10225771e95269631891c}{stop}}();}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPriceUpdater_aeef5fc4b3e0f82c01596065fac581547}{run}}();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPriceUpdater_aae48ad5f35eb179d8e3a2a3802ce3c66}{addEvent}}(\textcolor{keyword}{const}\ std::string\&\ event\_data);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classPriceUpdater_a3595881da24b2ad72399b7cb4a7284d9}{running}};}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{classThreadSafeQueue}{ThreadSafeQueue<std::string>}}\ \mbox{\hyperlink{classPriceUpdater_a026539c98bcab3900318ae348987f146}{eventQueue}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//GBM\ params}}
+\DoxyCodeLine{00061\ \ \ \ \ std::unordered\_map<std::string,\ double>\&\ \mbox{\hyperlink{classPriceUpdater_a64d6f0d68c33f90d80a629a8f1c32d52}{stockPrices}};}
+\DoxyCodeLine{00062\ \ \ \ \ std::mutex\&\ \mbox{\hyperlink{classPriceUpdater_a3cc0e20c4223b3fdb8b907b7e70a5d9d}{priceMutex}};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classPriceUpdater_aa495dd6c70e4a110533df45949065cab}{baseDrift}}\ =\ 0.001;}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classPriceUpdater_a48ca464721ae9570ac04abdcb050801e}{baseVolatility}}\ =\ 0.01;}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classPriceUpdater_aa44334a49b3b7e6379cec11a28469302}{lambda}}\ =\ 0.1;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classPriceUpdater_ac37e5e07cf2c836ac92a9b200ea42e5c}{beta}}\ =\ 0.05;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classPriceUpdater_a503df62c141c1066f296c2ce77ad1706}{alpha}}\ =\ 0.1;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//Random\ number\ generators}}
+\DoxyCodeLine{00070\ \ \ \ \ std::mt19937\ \mbox{\hyperlink{classPriceUpdater_a4aec3c11ad07d0fc876aabafad3f02c5}{generator}};}
+\DoxyCodeLine{00071\ \ \ \ \ std::normal\_distribution<double>\ \mbox{\hyperlink{classPriceUpdater_aa31fc21b2c8b266821addafef1201a18}{distribution}};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPriceUpdater_ac6675ac21bb2640aab7ce0db1cc5e016}{updatePrices}}(std::string\&\ event\_data);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{static}\ std::tuple<std::string,\ std::string,\ std::string,\ std::string,\ std::string>\ \mbox{\hyperlink{classPriceUpdater_a9afc59a3e993705d27344079e2e4237a}{parsePriceUpdateEvent}}(\textcolor{keyword}{const}\ std::string\&\ event\_data);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ std::unordered\_map<std::string,\ std::unique\_ptr<OrderBook>>\&\ \mbox{\hyperlink{classPriceUpdater_ae742b94294acd678ea43a3aab06c9bca}{orderBooks}};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classPriceUpdater_a1fdf80b17ffbdf9c34c6d8de05b58198}{randomGaussian}}()\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classPriceUpdater_aa31fc21b2c8b266821addafef1201a18}{distribution}}(\mbox{\hyperlink{classPriceUpdater_a4aec3c11ad07d0fc876aabafad3f02c5}{generator}});}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

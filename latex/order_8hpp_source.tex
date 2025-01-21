@@ -1,0 +1,55 @@
+\doxysection{order.\+hpp}
+\hypertarget{order_8hpp_source}{}\label{order_8hpp_source}\index{include/order.hpp@{include/order.hpp}}
+\mbox{\hyperlink{order_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ORDER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ORDER\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{order_8hpp_a57124e387290311f33f3b54a54930418}{OrderType}}\ \{\ \mbox{\hyperlink{order_8hpp_a57124e387290311f33f3b54a54930418affb8d99dc885d37eec36c5497244cba8}{MARKET}},\ \mbox{\hyperlink{order_8hpp_a57124e387290311f33f3b54a54930418a3d49b5cb41d88e381beb0d887d7023a2}{LIMIT}}\ \};}
+\DoxyCodeLine{00008\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00}{Side}}\ \{\ \mbox{\hyperlink{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00ac45b496ec0828772c8088e4118f09b33}{BUY}},\ \mbox{\hyperlink{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00a860926e6fc3f191e18ee7a98259164b8}{SELL}}\ \};}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structOrder}{Order}}\ \{}
+\DoxyCodeLine{00011\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structOrder_a4532ecba5ec5d2d0a23be501c3b289dc}{id}};}
+\DoxyCodeLine{00012\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structOrder_ab4ca229dc586fab5d6df73fc930783a8}{client\_id}};}
+\DoxyCodeLine{00013\ \ \ \mbox{\hyperlink{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00}{Side}}\ \mbox{\hyperlink{structOrder_aca4577f24699c9417ae56179de4c7560}{side}};}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structOrder_a22df57af82ecda59bd0ed1f7534a170b}{price}};}
+\DoxyCodeLine{00015\ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structOrder_ad42c2b186d4a28b61beb081e935e7b8c}{quantity}};}
+\DoxyCodeLine{00016\ \ \ \mbox{\hyperlink{order_8hpp_a57124e387290311f33f3b54a54930418}{OrderType}}\ \mbox{\hyperlink{structOrder_a56ba7db89fb27678b28a878886943b2e}{type}};}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{structOrder_adc28c7fee43a512c73d846cd21804db2}{timestamp}};}
+\DoxyCodeLine{00018\ \ \ std::string\ \mbox{\hyperlink{structOrder_a1c3047c48f3d3ca90f915921c2cedac0}{identifier}};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \mbox{\hyperlink{structOrder_ade985a25f393e87564fda48c368f1674}{Order}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structOrder_ab4ca229dc586fab5d6df73fc930783a8}{client\_id}},\ \mbox{\hyperlink{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00}{Side}}\ \mbox{\hyperlink{structOrder_aca4577f24699c9417ae56179de4c7560}{side}},\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structOrder_a22df57af82ecda59bd0ed1f7534a170b}{price}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structOrder_ad42c2b186d4a28b61beb081e935e7b8c}{quantity}},\ \mbox{\hyperlink{order_8hpp_a57124e387290311f33f3b54a54930418}{OrderType}}\ \mbox{\hyperlink{structOrder_a56ba7db89fb27678b28a878886943b2e}{type}},\ std::string\ stock\_symbol,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structOrder_adc28c7fee43a512c73d846cd21804db2}{timestamp}})}
+\DoxyCodeLine{00021\ \ \ :\ \mbox{\hyperlink{structOrder_a4532ecba5ec5d2d0a23be501c3b289dc}{id}}(\mbox{\hyperlink{structOrder_a4532ecba5ec5d2d0a23be501c3b289dc}{id}}),\ \mbox{\hyperlink{structOrder_ab4ca229dc586fab5d6df73fc930783a8}{client\_id}}(\mbox{\hyperlink{structOrder_ab4ca229dc586fab5d6df73fc930783a8}{client\_id}}),\ \mbox{\hyperlink{structOrder_aca4577f24699c9417ae56179de4c7560}{side}}(\mbox{\hyperlink{structOrder_aca4577f24699c9417ae56179de4c7560}{side}}),\ \mbox{\hyperlink{structOrder_a22df57af82ecda59bd0ed1f7534a170b}{price}}(\mbox{\hyperlink{structOrder_a22df57af82ecda59bd0ed1f7534a170b}{price}}),\ \mbox{\hyperlink{structOrder_ad42c2b186d4a28b61beb081e935e7b8c}{quantity}}(\mbox{\hyperlink{structOrder_ad42c2b186d4a28b61beb081e935e7b8c}{quantity}}),\ \mbox{\hyperlink{structOrder_a56ba7db89fb27678b28a878886943b2e}{type}}(\mbox{\hyperlink{structOrder_a56ba7db89fb27678b28a878886943b2e}{type}}),\ \mbox{\hyperlink{structOrder_a1c3047c48f3d3ca90f915921c2cedac0}{identifier}}(std::move(stock\_symbol)),\ \mbox{\hyperlink{structOrder_adc28c7fee43a512c73d846cd21804db2}{timestamp}}(\mbox{\hyperlink{structOrder_adc28c7fee43a512c73d846cd21804db2}{timestamp}})\ \{\}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ \mbox{\hyperlink{structOrder_aecef94cdc6bc8a888aded4630ba4ae7f}{operator<<}}(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structOrder}{Order}}\&\ order);}
+\DoxyCodeLine{00024\ \};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structMatchedOrder}{MatchedOrder}}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structMatchedOrder_a39386b4b29c70f1653f1a79291e0da5c}{buyOrderId}};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structMatchedOrder_a9495f095361f4e15a0f9dede56e689e7}{sellOrderId}};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structMatchedOrder_a0babecaff76157f702ef0280ada12fd4}{price}};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structMatchedOrder_a87df426c3bb8105ec6b632585dccd3c4}{quantity}};}
+\DoxyCodeLine{00031\ \ \ \ \ std::string\ \mbox{\hyperlink{structMatchedOrder_a99dd3a1ccadf86534c6d9e3194945bde}{identifier}};}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{order_8hpp_a57124e387290311f33f3b54a54930418}{OrderType}}\ \mbox{\hyperlink{structMatchedOrder_a1f305ddbc86f74eecf478b4e08dad572}{type}};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{structMatchedOrder_a6ec86242881a8f3a99bfc2d616ae32f8}{timestamp}};}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{inline}\ std::ostream\&\ \mbox{\hyperlink{order_8hpp_aecef94cdc6bc8a888aded4630ba4ae7f}{operator<<}}(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structOrder}{Order}}\&\ order)\ \{}
+\DoxyCodeLine{00038\ \ \ os\ <<\ \textcolor{stringliteral}{"{}Order\ Details:\(\backslash\)n"{}}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}ID:\ "{}}\ <<\ order.\mbox{\hyperlink{structOrder_a4532ecba5ec5d2d0a23be501c3b289dc}{id}}\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Client\ ID:\ "{}}\ <<\ order.\mbox{\hyperlink{structOrder_ab4ca229dc586fab5d6df73fc930783a8}{client\_id}}\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Side:\ "{}}\ <<\ (order.\mbox{\hyperlink{structOrder_aca4577f24699c9417ae56179de4c7560}{side}}\ ==\ \mbox{\hyperlink{order_8hpp_a8c0137d7160ad71b6ed265c53c99ed00ac45b496ec0828772c8088e4118f09b33}{Side::BUY}}\ ?\ \textcolor{stringliteral}{"{}BUY"{}}\ :\ \textcolor{stringliteral}{"{}SELL"{}})\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Price:\ "{}}\ <<\ order.\mbox{\hyperlink{structOrder_a22df57af82ecda59bd0ed1f7534a170b}{price}}\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Quantity:\ "{}}\ <<\ order.\mbox{\hyperlink{structOrder_ad42c2b186d4a28b61beb081e935e7b8c}{quantity}}\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Type:\ "{}}\ <<\ (order.\mbox{\hyperlink{structOrder_a56ba7db89fb27678b28a878886943b2e}{type}}\ ==\ \mbox{\hyperlink{order_8hpp_a57124e387290311f33f3b54a54930418a3d49b5cb41d88e381beb0d887d7023a2}{OrderType::LIMIT}}\ ?\ \textcolor{stringliteral}{"{}LIMIT"{}}\ :\ \textcolor{stringliteral}{"{}MARKET"{}})\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Timestamp:\ "{}}\ <<\ order.\mbox{\hyperlink{structOrder_adc28c7fee43a512c73d846cd21804db2}{timestamp}}\ <<\ std::endl;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
