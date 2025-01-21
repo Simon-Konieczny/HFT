@@ -21,12 +21,20 @@ class OrderBook {
     std::map<double, std::set<Order, OrderComparator>, std::greater<>> sell_orders;
     std::vector<MatchedOrder> matchBuyOrder(const Order& order);
     std::vector<MatchedOrder> matchSellOrder(const Order& order);
+    double buyVolume = 0;
+    double sellVolume = 0;
+    int orderCount = 0;
 
   public:
     void addOrder(const Order& order);
     bool removeOrder(int order_id);
     std::vector<MatchedOrder> processOrder(const Order& order);
     OrderBook();
+    double getBuyVolume() const;
+    double getSellVolume() const;
+    double getAverageVolume() const;
+    double calculateImbalanceVolatility() const;
+
 
   friend std::ostream& operator<<(std::ostream& os, const OrderBook& book);
 };

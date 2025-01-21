@@ -14,7 +14,10 @@
 
 class TradingSystem {
     public:
-        TradingSystem() : running(false), priceUpdater(stockPrices, priceMutex, 0.05, 0.2, 0.01) {}
+        TradingSystem() : running(true), context(1), dealerSocket(context, zmq::socket_type::router), priceUpdater(stockPrices, priceMutex, orderBooks), matchingEngine(orderBooks) {
+            dealerSocket.bind("tcp://localhost:5555");
+            std::cout << "Trading System started" << std::endl;
+        }
 
         void start();
         void stop();
@@ -22,21 +25,24 @@ class TradingSystem {
         void receiveStocks(const std::unordered_map<std::string, double>& incomingStocks);
 
     private:
+        std::thread main_thread;
         std::unordered_map<std::string, double> stockPrices;
-        std::mutex priceMutex;
-        PriceUpdater priceUpdater;
-        std::thread priceUpdaterThread;
-        MatchingEngine matchingEngine;
-        zmq::socket_t socket;
-        std::queue<MatchedOrder> matchedOrderQueue;
-        std::mutex queueMutex;
-        std::condition_variable queueCondition;
-        const size_t BATCH_SIZE = 50;
-        const std::chrono::milliseconds BATCH_INTERVAL = std::chrono::milliseconds(2);
         std::atomic<bool> running;
-        void batchProcessor();
-        void publishBatch(const std::vector<MatchedOrder>& batch);
-        void serializeBatch(const std::vector<MatchedOrder>& batch);
+
+        std::thread price_updater_thread;
+        PriceUpdater priceUpdater;
+
+
+        std::mutex priceMutex;
+
+        MatchingEngine matchingEngine;
+        std::unordered_map<std::string, std::unique_ptr<OrderBook>> orderBooks;
+
+        zmq::context_t context;
+        zmq::socket_t dealerSocket;
+
+        void DispatchEvent(const std::string& event_data);
+        std::string ParseEventType(const std::string& event_data);
 };
 
 #endif
