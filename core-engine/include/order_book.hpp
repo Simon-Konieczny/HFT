@@ -5,6 +5,8 @@
 #include <map>
 #include <set>
 #include <utility>
+#include <vector>
+
 #include "order.hpp"
 
 struct OrderComparator {
@@ -17,14 +19,22 @@ class OrderBook {
   private:
     std::map<double, std::set<Order, OrderComparator>> buy_orders;
     std::map<double, std::set<Order, OrderComparator>, std::greater<>> sell_orders;
-    void matchBuyOrder(const Order& order);
-    void matchSellOrder(const Order& order);
+    std::vector<MatchedOrder> matchBuyOrder(const Order& order);
+    std::vector<MatchedOrder> matchSellOrder(const Order& order);
+    double buyVolume = 0;
+    double sellVolume = 0;
+    int orderCount = 0;
 
   public:
     void addOrder(const Order& order);
     bool removeOrder(int order_id);
-    void processOrder(const Order& order);
+    std::vector<MatchedOrder> processOrder(const Order& order);
     OrderBook();
+    double getBuyVolume() const;
+    double getSellVolume() const;
+    double getAverageVolume() const;
+    double calculateImbalanceVolatility() const;
+
 
   friend std::ostream& operator<<(std::ostream& os, const OrderBook& book);
 };

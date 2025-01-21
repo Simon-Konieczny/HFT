@@ -8,17 +8,19 @@ set(CMAKE_TOOLCHAIN_FILE "C:/Users/konie/vcpkg/scripts/buildsystems/vcpkg.cmake"
 add_executable(core_engine
         src/order_book.cpp
         src/matching_engine.cpp
+        src/price_updater.cpp
+        src/trading_system.cpp
         include/order.hpp
         include/order_book.hpp
         include/matching_engine.hpp
         include/utils.hpp
+        include/price_updater.hpp
+        include/trading_system.hpp
         main.cpp
 )
 
-find_package(GTest REQUIRED)
+find_package(ZeroMQ CONFIG REQUIRED)
+target_link_libraries(core_engine PRIVATE libzmq libzmq-static)
 
-target_link_libraries(core_engine GTest::GTest GTest::Main)
-
-# Enable testing and add the test executable
-enable_testing()
-add_test(NAME order_book_tests COMMAND core_engine)
+find_package(cppzmq CONFIG REQUIRED)
+target_link_libraries(core_engine PRIVATE cppzmq cppzmq-static)

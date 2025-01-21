@@ -2,7 +2,7 @@
 #define ORDER_HPP
 
 #include <string>
-#include <iostream>
+#include <utility>
 
 enum class OrderType { MARKET, LIMIT };
 enum class Side { BUY, SELL };
@@ -18,10 +18,21 @@ struct Order {
   std::string identifier;
 
   Order(int id, int client_id, Side side, double price, int quantity, OrderType type, std::string stock_symbol, int timestamp)
-  : id(id), client_id(client_id), side(side), price(price), quantity(quantity), type(type), identifier(stock_symbol), timestamp(timestamp) {}
+  : id(id), client_id(client_id), side(side), price(price), quantity(quantity), type(type), identifier(std::move(stock_symbol)), timestamp(timestamp) {}
 
   friend std::ostream& operator<<(std::ostream& os, const Order& order);
 };
+
+struct MatchedOrder {
+    int buyOrderId;
+    int sellOrderId;
+    double price;
+    int quantity;
+    std::string identifier;
+    OrderType type;
+    long timestamp;
+};
+
 
 inline std::ostream& operator<<(std::ostream& os, const Order& order) {
   os << "Order Details:\n"
