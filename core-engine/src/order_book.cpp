@@ -1,6 +1,8 @@
 #include "../include/order_book.hpp"
 #include <stdexcept>
 #include <algorithm>
+#include <unordered_map>
+#include <vector>
 
 OrderBook::OrderBook() {
     buy_orders = std::map<double, std::set<Order, OrderComparator>>();
@@ -49,17 +51,18 @@ bool OrderBook::removeOrder(int order_id) {
     return false;
 }
 
-void OrderBook::processOrder(const Order& order) {
+std::vector<MatchedOrder> OrderBook::processOrder(const Order& order) {
     if (order.side == Side::BUY) {
-        matchBuyOrder(order);
-    } else if (order.side == Side::SELL) {
-        matchSellOrder(order);
-    } else {
-        throw std::invalid_argument("Invalid order side");
+        return matchBuyOrder(order);
     }
+    if (order.side == Side::SELL) {
+        return matchSellOrder(order);
+    }
+    throw std::invalid_argument("Invalid order side");
 }
 
-void OrderBook::matchBuyOrder(const Order &order) {
+std::vector<MatchedOrder> OrderBook::matchBuyOrder(const Order &order) {
+    std::vector<MatchedOrder> matched_orders;
     while (order.quantity > 0 && !sell_orders.empty()) {
         auto& [price, sellQueue] = *sell_orders.begin();
 
@@ -72,8 +75,11 @@ void OrderBook::matchBuyOrder(const Order &order) {
 
         order.quantity -= matchQuantity;
         sellOrder.quantity -= matchQuantity;
+        buyVolume -= matchQuantity*order.price;
 
         std:: cout << "Matched: " << matchQuantity << " at price : " << price << std::endl;
+        MatchedOrder matched_order(order.id, sellOrder.id, order.price, matchQuantity, order.identifier, order.type);
+        matched_orders.push_back(matched_order);
 
         if (sellOrder.quantity == 0) sellQueue.erase(sellQueue.begin());
         if (sellQueue.empty()) sell_orders.erase(order.price);
@@ -81,10 +87,15 @@ void OrderBook::matchBuyOrder(const Order &order) {
 
     if (order.quantity > 0) {
         buy_orders[order.price].insert(order); // add remaining order
+        buyVolume += order.quantity*order.price;
+        orderCount++;
     }
+
+    return matched_orders;
 }
 
-void OrderBook::matchSellOrder(const Order &order) {
+std::vector<MatchedOrder> OrderBook::matchSellOrder(const Order &order) {
+    std::vector<MatchedOrder> matched_orders;
     while (order.quantity > 0 && !buy_orders.empty()) {
         auto& [price, buyQueue] = *buy_orders.begin();
 
@@ -95,8 +106,11 @@ void OrderBook::matchSellOrder(const Order &order) {
 
         order.quantity -= matchQuantity;
         sellOrder.quantity -= matchQuantity;
+        sellVolume -= matchQuantity*order.price;
 
         std:: cout << "Matched: " << matchQuantity << " at price : " << price << std::endl;
+        MatchedOrder matched_order(order.id, sellOrder.id, order.price, matchQuantity, order.identifier, order.type);
+        matched_orders.push_back(matched_order);
 
         if (sellOrder.quantity == 0) buyQueue.erase(buyQueue.begin());
         if (buyQueue.empty()) sell_orders.erase(order.price);
@@ -104,8 +118,44 @@ void OrderBook::matchSellOrder(const Order &order) {
 
     if (order.quantity > 0) {
         sell_orders[order.price].insert(order); // add remaining order
+        sellVolume += order.quantity*order.price;
+        orderCount++;
     }
+
+    return matched_orders;
 }
+
+double OrderBook::getBuyVolume() const {
+    return buyVolume;
+}
+
+double OrderBook::getSellVolume() const {
+    return sellVolume;
+}
+
+double OrderBook::getAverageVolume() const {
+    return (buyVolume + sellVolume) / orderCount;
+}
+
+double OrderBook::calculateImbalanceVolatility() const {
+    static double previousImbalance = 0.0;
+    static double lastVolatility = 0.0;
+    double currentImbalance = (buyVolume - sellVolume) / (buyVolume + sellVolume);
+
+    // Avoid unnecessary recalculation if the imbalance hasn't changed
+    if (std::abs(currentImbalance - previousImbalance) < 1e-6) {
+        return lastVolatility;
+    }
+
+    double volatility = std::abs(currentImbalance - previousImbalance);
+    previousImbalance = currentImbalance;
+    lastVolatility = volatility;  // Cache volatility for reuse
+
+    return volatility;
+}
+
+
+
 
 
 
