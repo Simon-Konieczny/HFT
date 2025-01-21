@@ -31,8 +31,8 @@
 *.out
 *.app
 
-core-engine/docs
 #
 core-engine/cmake-build-debug-mingw
 .idea/
 core-engine/.idea
+core-engine/docs
